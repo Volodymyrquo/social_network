@@ -1,19 +1,19 @@
 import React from "react";
 import classes from "./Profile.module.css";
 import MyPosts from "./myPosts/MyPosts";
+import ProfileInfo from "./profileInfo/ProfileInfo";
 
-const Profile = () => {
+const Profile = (props) => {
+
     return (
         <div>
-            <div>
-                <img className={classes.img}
-                    src="https://lh3.googleusercontent.com/proxy/G-egasVucf4KiT5vUZZ4j9Anr_6t0LAidECmD8W7QnazSzw-0fBhpyVXHaB1s7pppgZSteEX2lP7JZu2zzoD7QnLfMgRKTegdYBQ9V2CCMv9fvFtBTKM_kc" />
-            </div>
-            <div>
-                ava + description
-            </div>
-            <MyPosts/>
-                   </div>
+            <ProfileInfo/>
+            <MyPosts posts={props.profilePage.posts}
+                     addPost={props.addPost}
+                     newPostText={props.profilePage.newPostText}
+                     updateNewPostText={props.updateNewPostText}
+            />
+        </div>
     );
 }
 

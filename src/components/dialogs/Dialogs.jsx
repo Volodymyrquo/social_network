@@ -1,42 +1,40 @@
 import React from "react";
 import classes from "./Dialogs.module.css";
-import {NavLink} from "react-router-dom";
+import DialogsItem from "./dialogItem/DialogItem";
+import Message from "./message/Message";
+
 
 const Dialogs = (props) => {
+
+    let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogsItem name={dialog.name} id={dialog.id}/>)
+    let messagesElements = props.dialogsPage.messages.map(el => <Message message={el.message} id={el.id}/>)
+    let newMessageElement = React.createRef();
+
+    let addMassage = () => {
+        props.addMessage();
+    }
+
+
+    let onMessageChange = () => {
+        let text = newMessageElement.current.value;
+        props.updateNewMessageText(text);
+    }
+
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
-                <div className={classes.dialog + ' ' + classes.active}>
-                    <NavLink to='/dialogs/1'>Dimych</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to='/dialogs/2'>Andrey</NavLink>
-
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to='/dialogs/3'>Sveta</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to='/dialogs/4'>Sasha</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to='/dialogs/5'>Victor</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to='/dialogs/6'>Valera</NavLink>
-                </div>
+                {dialogsElements}
             </div>
             <div className={classes.messages}>
-                <div className={classes.message}>
-                    Hi!
+                {messagesElements}
+                <div>
+                    <textarea onChange={onMessageChange} ref={newMessageElement}
+                              value={props.dialogsPage.newMessageText}/>
                 </div>
-                <div className={classes.message}>
-                    How is your it-kamasutra?
+                <div>
+                    <button onClick={addMassage}>Add message</button>
                 </div>
-                <div className={classes.message}>
-                    Yo
-                </div>
-
             </div>
         </div>
     );

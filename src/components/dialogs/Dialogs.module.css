@@ -24,3 +24,12 @@ padding: 10px;
 .message {
 
 }
+
+.dialogs a.activeLink {
+    color: white;
+}
+
+.dialogs button {
+    background-color: #968654;
+    color: white;
+}
