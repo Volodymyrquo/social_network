@@ -1,0 +1,11 @@
+.userPhoto {
+     width: 75px;
+     border-radius: 50%;
+     padding: 10px;
+ }
+
+.user button {
+    background-color: #968654;
+    color: white;
+margin:  10px;
+}
