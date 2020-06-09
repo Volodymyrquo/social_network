@@ -9,3 +9,8 @@
     color: white;
 margin:  10px;
 }
+
+.selectedPage {
+    font-weight: bold;
+
+}
