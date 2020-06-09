@@ -1,5 +1,9 @@
- let store = {
-    _callSubscriber() {
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
+let store = {
+    _callSubscribe() {
         console.log('State changed');
     },
     _state: {
@@ -30,57 +34,29 @@
                 {id: 5, message: 'Yo'}
             ],
             newMessageText: 'How are you, my brothers and sisters?'
-        }
+        },
+        sidebar: {}
 
     },
 
-     getState() {
+    getState() {
 
         return (
             this._state
         );
-     },
-    addPost() {
-
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-
+    },
+    subscribe(observer) {
+        this._callSubscribe = observer;
     },
 
-    updateNewPostText(newText) {
-
-        this._state.profilePage.newPostText = newText;
-
-        this._callSubscriber(this._state);
-
-    },
-
-    addMessage () {
-        let newMessage = {
-            id: 6,
-            message: this._state.dialogsPage.newMessageText
-        };
-        this._state.dialogsPage.messages.push(newMessage);
-        this._state.dialogsPage.newMessageText = '';
-        this._callSubscriber(this._state);
-
-    },
-    updateNewMessageText(newText) {
-        this._state.dialogsPage.newMessageText = newText;
-        this._callSubscriber(this._state);
-    },
-    subscriber(observer) {
-        this._callSubscriber = observer;
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPagee = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+        this._callSubscribe(this._state);
     }
-
-
 }
 
+
 export default store;
-window.store = store;
+
