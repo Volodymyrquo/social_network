@@ -6,3 +6,11 @@ header img {
     grid-area: h;
     background-color: #6c9645;
 }
+
+.loginBlock {
+   font-weight: bold;
+    float: right;
+    padding: 10px;
+    color: #8C3696;
+}
+
