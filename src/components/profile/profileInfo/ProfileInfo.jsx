@@ -1,8 +1,12 @@
 import React from "react";
 import classes from "./ProfileInfo.module.css";
+import Preloader from "../../common/preloader/Preloader";
 
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+    if(!props.profile) {
+      return  <Preloader/>
+    }
     return (
         <div>
 
@@ -11,7 +15,13 @@ const ProfileInfo = () => {
                      src="https://www.thewowstyle.com/wp-content/uploads/2015/01/nature-images.jpg"/>
             </div>
             <div className={classes.descriptionBlock}>
-                ava + description
+                               <img src={props.profile.photos.large} alt=""/>
+                               <div className={classes.descriptions}>
+                                   {props.profile.fullName}
+                               </div>
+                               <div className={classes.descriptions}>
+                                   {props.profile.userId}
+                               </div>
             </div>
 
         </div>
