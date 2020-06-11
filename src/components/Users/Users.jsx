@@ -2,6 +2,8 @@ import React from "react";
 import classes from './users.module.css';
 import userPhoto from "../../assets/images/user.png"
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
+import {usersAPI} from "../../api/api";
 
 const  Users = (props) => {
 
@@ -14,7 +16,7 @@ const  Users = (props) => {
 
     <div className={classes.user}>
         <div>
-        {pages.map(p => <span className={props.currentPage === p && classes.selectedPage} onClick={()=>{props.onPageChanged(p)}}>{p}</span>)}
+        {pages.map(p => <span className={props.currentPage === p && classes.selectedPage}  onClick={()=>{props.onPageChanged(p)}}>{p}</span>)}
         </div>
        { props.users.map(u => <div key={u.id}>
 <span>
@@ -25,8 +27,16 @@ const  Users = (props) => {
     </div>
     <div>
             {u.followed ?
-                <button onClick={() => props.unfollow(u.id)} >Unfollow</button> :
-                <button onClick={() => props.follow(u.id)}>Follow</button>}
+                <button onClick={() =>
+{ usersAPI.unfollow(u.id)
+    .then(response => {if(response.resultCode === 0){ props.unfollow(u.id)}})}
+                  }>
+                    Unfollow</button> :
+                <button onClick={() =>
+                    {   usersAPI.follow(u.id)
+                        .then(response => {if(response.resultCode === 0){ props.follow(u.id)}})}
+                }>
+                Follow</button>}
          </div>
 </span>
 <span>
