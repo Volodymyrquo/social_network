@@ -12,7 +12,7 @@ const ProfileInfo = (props) => {
         <div>
 
             <div>
-                <img className={classes.img}
+                <img className={classes.img} alt={"some img"}
                      src="https://www.thewowstyle.com/wp-content/uploads/2015/01/nature-images.jpg"/>
             </div>
             <div className={classes.descriptionBlock}>
