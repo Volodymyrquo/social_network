@@ -5,7 +5,7 @@ import AddPostForm from "../../login/AddPostForm";
 
 
 const MyPosts = (props) => {
-
+console.log("RENDER")
     let postsElements = props.posts.map(post => <Post message={post.message} key={post.id} count={post.likesCount}/>)
 
 const addNewPost = (values) => {
