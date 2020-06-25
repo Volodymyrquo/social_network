@@ -3,8 +3,8 @@ import classes from "./ProfileInfo.module.css";
 import Preloader from "../../common/preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
-const ProfileInfo = (props) => {
-    if(!props.profile) {
+const ProfileInfo = ({profile,status,updateStatus}) => {
+    if(!profile) {
       return  <Preloader/>
     }
 
@@ -16,13 +16,13 @@ const ProfileInfo = (props) => {
                      src="https://www.thewowstyle.com/wp-content/uploads/2015/01/nature-images.jpg"/>
             </div>
             <div className={classes.descriptionBlock}>
-                               <img src={props.profile.photos.large} alt=""/>
-                               <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                               <img src={profile.photos.large} alt=""/>
+                               <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
                                <div className={classes.descriptions}>
-                                   {props.profile.fullName}
+                                   {profile.fullName}
                                </div>
                                <div className={classes.descriptions}>
-                                   {props.profile.userId}
+                                   {profile.userId}
                                </div>
             </div>
 
