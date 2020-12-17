@@ -4,16 +4,17 @@ import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'samurai-network/auth/SET_USER_DATA';
 
+type InitialStateType = typeof initialState;
 
 let initialState = {
-    userId: null,
-    email: null,
-    login: null,
+    userId: null as null|number,
+    email: null as null|string,
+    login: null as null|string,
     isAuth: false
 };
 
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action:any):InitialStateType => {
 
     switch (action.type) {
         case SET_USER_DATA:
@@ -28,12 +29,17 @@ const authReducer = (state = initialState, action) => {
 
 }
 
-export const setAuthUserData = (userId, email, login, isAuth) => ({
+type SetAuthUserDataActionType = {
+    type: typeof SET_USER_DATA;
+    payload: InitialStateType
+};
+
+export const setAuthUserData = (userId:number, email:string, login:string, isAuth:boolean):SetAuthUserDataActionType => ({
     type: SET_USER_DATA,
     payload: {userId, email, login, isAuth}
 });
 
-export const getAuthUserData = () => async (dispatch) => {
+export const getAuthUserData = () => async (dispatch:any) => {
     let response = await authApi.me();
     if (response.resultCode === 0) {
         let {id, email, login} = response.data;
@@ -42,7 +48,7 @@ export const getAuthUserData = () => async (dispatch) => {
 
 
 }
-export const login = (email, password, rememberMe) => async (dispatch) => {
+export const login = (email:string, password:string, rememberMe:boolean) => async (dispatch:any) => {
 
 
     let response = await authApi.login(email, password, rememberMe);
@@ -55,7 +61,7 @@ export const login = (email, password, rememberMe) => async (dispatch) => {
             }
         }
 
-export const logout = () => async (dispatch) => {
+export const logout = () => async (dispatch:any) => {
    let response = await authApi.logout();
                   if (response.resultCode === 0) {
                 dispatch(setAuthUserData(null, null, null, false));

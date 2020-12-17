@@ -18,11 +18,11 @@ import store from "./redux/redux-store";
 
 
 class App extends Component {
-    componentDidMount() {
+    componentDidMount() {debugger
         this.props.initializeApp();
     }
 
-    render() {
+    render() {debugger
 if(!this.props.initialized) {
    return <Preloader/>
 }
