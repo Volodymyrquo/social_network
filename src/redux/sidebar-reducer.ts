@@ -1,5 +1,5 @@
 
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 let initialState = {}
 
 const sidebarReducer = (state = initialState, action:any):InitialStateType => {

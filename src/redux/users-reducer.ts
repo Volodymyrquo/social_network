@@ -12,7 +12,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS"
 
 
 
-type InitialStateType =  typeof initialState;
+export type InitialStateType =  typeof initialState;
 
 let initialState = {
     users: [] as Array<UserType>,

@@ -11,8 +11,8 @@ type PropsType = {
     pageSize:number;
     users: Array<UserType>;
     followingInProgress: Array<number>;
-    follow: ()=>void;
-    unfollow: ()=>void;
+    follow: (userId:number)=>void;
+    unfollow: (userId:number)=>void;
 }
 
 const Users: FC<PropsType> = ({currentPage,onPageChanged,totalUsersCount,pageSize,users, ...props}) => {

@@ -2,7 +2,7 @@ import { getAuthUserData } from './auth-reducer';
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 
 let initialState = {
   initialized: false,
