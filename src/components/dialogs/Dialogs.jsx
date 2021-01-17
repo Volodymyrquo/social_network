@@ -18,7 +18,7 @@ props.addMessage(values.newMessageBody)
          return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
-                {dialogsElements}
+                {dialogsElements} 
             </div>
             <div className={classes.messages}>
                 {messagesElements}

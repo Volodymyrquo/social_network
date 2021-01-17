@@ -32,6 +32,7 @@ type MapDispatchPropsType = {
     getUsers: (currentPage:number, pageSize:number)=>void;
     follow: (userId:number)=>void;
     unfollow: (userId:number)=>void;
+    setCurrentPage:(userId:number)=>void
 
 }
 type PropsType =  MapStatePropsType & MapDispatchPropsType
@@ -68,7 +69,7 @@ class UsersContainer extends React.Component<PropsType> {
 
 }
 
-let mapStateToProps = (state: AppStateType):MapStatePropsType => {
+let mapStateToProps = (state:any):MapStatePropsType => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
