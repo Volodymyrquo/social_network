@@ -1,14 +1,15 @@
 import React from "react";
-import {Field, reduxForm} from "redux-form";
+import {InjectedFormProps, reduxForm} from "redux-form";
 import {createField, Input} from "../common/formsControls/FormsControls";
 import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import styles from "./../common/formsControls/FormsControls.module.css"
+import { AppStateType } from "../../redux/redux-store";
 
 
-const LoginForm = ({handleSubmit, error}) => {
+const LoginForm: React.FC<InjectedFormProps> = ({handleSubmit, error}) => {
     return (
         <form onSubmit={handleSubmit}>
 
@@ -27,8 +28,9 @@ const LoginForm = ({handleSubmit, error}) => {
 }
 
 const LoginReduxForm = reduxForm({form: "login"})(LoginForm)
-const Login = (props) => {
-    const onSubmit = (formData) => {
+
+const Login = (props:any) => {
+    const onSubmit = (formData:any) => {
         props.login(formData.email, formData.password, formData.rememberMe);
     }
 
@@ -43,7 +45,7 @@ const Login = (props) => {
         </div>
     )
 }
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state:AppStateType) => ({
     isAuth: state.auth.isAuth
 })
 
